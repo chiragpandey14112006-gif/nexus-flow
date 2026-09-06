@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Resets & Typography ─── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cyan-glow: #00f0ff;
+  --purple-glow: #a855f7;
+  --deep-purple: #7c3aed;
+  --bg-dark: #050510;
+  --bg-card: rgba(15, 15, 35, 0.65);
+  --border-glass: rgba(255, 255, 255, 0.06);
+  --text-dim: rgba(255, 255, 255, 0.5);
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-dark);
+  color: #e2e8f0;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.5);
+}
+
+/* ─── Glassmorphism Utilities ─── */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid var(--border-glass);
+}
+
+.glass-strong {
+  background: rgba(15, 15, 35, 0.85);
+  backdrop-filter: blur(40px) saturate(1.6);
+  -webkit-backdrop-filter: blur(40px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Glow Effects ─── */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15),
+              0 0 60px rgba(0, 240, 255, 0.05),
+              inset 0 0 20px rgba(0, 240, 255, 0.03);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15),
+              0 0 60px rgba(168, 85, 247, 0.05),
+              inset 0 0 20px rgba(168, 85, 247, 0.03);
+}
+
+.glow-cyan-strong {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3),
+              0 0 80px rgba(0, 240, 255, 0.1),
+              inset 0 0 30px rgba(0, 240, 255, 0.05);
+}
+
+.glow-purple-strong {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.3),
+              0 0 80px rgba(168, 85, 247, 0.1),
+              inset 0 0 30px rgba(168, 85, 247, 0.05);
+}
+
+/* ─── Text Glow ─── */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5),
+               0 0 30px rgba(0, 240, 255, 0.2);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.5),
+               0 0 30px rgba(168, 85, 247, 0.2);
+}
+
+/* ─── Node Edge Lines ─── */
+.edge-line {
+  stroke: url(#edgeGradient);
+  stroke-width: 1.5;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+.edge-line.active {
+  opacity: 0.7;
+  stroke-width: 2;
+}
+
+/* ─── Animations ─── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes grid-fade {
+  0% { opacity: 0; }
+  100% { opacity: 0.03; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ─── Background Grid Pattern ─── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-fade 2s ease-out forwards;
+}
+
+/* ─── Canvas cursor ─── */
+.canvas-grab {
+  cursor: grab;
+}
+.canvas-grab:active {
+  cursor: grabbing;
+}
+
+/* ─── Side Panel ─── */
+.side-panel-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.side-panel-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* ─── Input glow ring ─── */
+.input-glow:focus {
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.3),
+              0 0 20px rgba(0, 240, 255, 0.1);
+}
+
+/* ─── Skill Level Badges ─── */
+.badge-beginner {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+.badge-intermediate {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+.badge-advanced {
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+}
+.badge-expert {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
