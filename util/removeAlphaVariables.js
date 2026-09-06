@@ -6,28 +6,21 @@
  *
  * @param {import('postcss').Container} container
  * @param {string[]} toRemove
- */ "use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "removeAlphaVariables", {
-    enumerable: true,
-    get: function() {
-        return removeAlphaVariables;
+ */
+export function removeAlphaVariables(container, toRemove) {
+  container.walkDecls((decl) => {
+    if (toRemove.includes(decl.prop)) {
+      decl.remove()
+
+      return
     }
-});
-function removeAlphaVariables(container, toRemove) {
-    container.walkDecls((decl)=>{
-        if (toRemove.includes(decl.prop)) {
-            decl.remove();
-            return;
-        }
-        for (let varName of toRemove){
-            if (decl.value.includes(`/ var(${varName})`)) {
-                decl.value = decl.value.replace(`/ var(${varName})`, "");
-            } else if (decl.value.includes(`/ var(${varName}, 1)`)) {
-                decl.value = decl.value.replace(`/ var(${varName}, 1)`, "");
-            }
-        }
-    });
+
+    for (let varName of toRemove) {
+      if (decl.value.includes(`/ var(${varName})`)) {
+        decl.value = decl.value.replace(`/ var(${varName})`, '')
+      } else if (decl.value.includes(`/ var(${varName}, 1)`)) {
+        decl.value = decl.value.replace(`/ var(${varName}, 1)`, '')
+      }
+    }
+  })
 }
